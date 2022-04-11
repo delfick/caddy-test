@@ -1,0 +1,18 @@
+{
+	admin off
+	auto_https off
+}
+
+:6969 {
+	root * .
+
+	log {
+		output {$CADDY_LOG_OUTPUT}
+		format jsonselect "{severity:level} {timestamp:ts} {logName:logger} {httpRequest>requestMethod:request>method} {httpRequest>protocol:request>proto} {httpRequest>status:status} {httpRequest>responseSize:size} {httpRequest>userAgent:request>headers>User-Agent>[0]} {httpRequest>requestUrl:request>uri}" "{httpRequest>referrer:request>headers>Referer>[0]}" {
+			level_format "upper"
+			time_format "rfc3339_nano"
+		}
+	}
+
+	encode zstd gzip
+}

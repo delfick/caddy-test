@@ -13,5 +13,5 @@ if [[ ! -f ./caddy ]]; then
     xcaddy build v2.4.6 --with github.com/leodido/caddy-jsonselect-encoder
 fi
 
-export CADDY_LOG_OUTPUT=stderr
+export CADDY_LOG_OUTPUT=discard
 ./caddy run

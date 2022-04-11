@@ -15,4 +15,8 @@
 	}
 
 	encode zstd gzip
+
+	handle_errors {
+		rewrite * /not-found.php
+	}
 }
